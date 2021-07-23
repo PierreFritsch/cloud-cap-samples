@@ -3,6 +3,10 @@ const cds = require('@sap/cds')
 module.exports = cds.service.impl (function(){
   this.before ('NEW','Authors', genid)
   this.before ('NEW','Books', genid)
+
+  this.on( 'i18nNotify', 'Books', async req => {
+    req.notify(200, 'MY_MESSAGE_TOAST', []);
+  });
 })
 
 /** Generate primary keys for target entity in request */

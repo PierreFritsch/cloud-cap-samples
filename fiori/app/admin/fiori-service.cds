@@ -8,6 +8,20 @@ using from '../common'; // to help UI linter get the complete annotations
 
 annotate AdminService.Books with @(
 	UI: {
+		LineItem: [
+			{Value: ID},
+			{Value: title},
+			{Value: author.name, Label:'{i18n>Author}'},
+			{Value: genre.name},
+			{Value: stock},
+			{Value: price},
+			{Value: currency.symbol, Label:' '},
+			{
+				$Type  : 'UI.DataFieldForAction',
+				Action : 'AdminService.i18nNotify',
+				Label  : 'i18n Notify',
+			},
+		],
 		Facets: [
 			{$Type: 'UI.ReferenceFacet', Label: '{i18n>General}', Target: '@UI.FieldGroup#General'},
 			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Translations}', Target:  'texts/@UI.LineItem'},
