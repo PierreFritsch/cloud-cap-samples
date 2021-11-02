@@ -8,17 +8,23 @@ using {sap.common.CodeList as CodeList} from '@sap/cds/common';
 namespace sap.capire.bookshop;
 
 entity Books : managed {
-  key ID         : Integer;
-      title      : localized String(111);
-      descr      : localized String(1111);
-      author     : Association to Authors;
-      genre      : Association to Genres;
-      stock      : Integer;
-      price      : Decimal;
-      currency   : Currency;
-      image      : LargeBinary @Core.MediaType : 'image/png';
-      weight     : Decimal     @Measures.Unit  : weightUnit.code;
-      weightUnit : MeasureUnit;
+  key ID               : Integer;
+      title            : localized String(111);
+      descr            : localized String(1111);
+      author           : Association to Authors;
+      genre            : Association to Genres;
+      stock            : Integer;
+      price            : Decimal;
+      currency         : Currency;
+      image            : LargeBinary @Core.MediaType : 'image/png';
+      weight           : Decimal     @Measures.Unit  : weightUnit.code;
+      weightUnit       : MeasureUnit;
+      weightAsQuantity : Quantity;
+}
+
+type Quantity {
+  unit    : MeasureUnit;
+  content : Decimal @Measures.Unit : unit.code;
 }
 
 type MeasureUnit : Association to one MeasureUnitCode;

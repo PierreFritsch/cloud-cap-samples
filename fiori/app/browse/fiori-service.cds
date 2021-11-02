@@ -48,6 +48,6 @@ annotate CatalogService.Books with @(UI : {
             Label : '{i18n>Author}'
         },
         {Value : genre.name},
-        {Value : weight},
+        {Value : weightAsQuantity_content},
     ]
 }, );
