@@ -199,6 +199,10 @@ annotate common.Languages with @(
     }
 );
 
+annotate common.Languages with {
+    code @Common.Text : name  @Common.TextArrangement : #TextOnly
+};
+
 ////////////////////////////////////////////////////////////////////////////
 //
 //	Language Details
