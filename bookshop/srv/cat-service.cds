@@ -7,6 +7,10 @@ service CatalogService @(path:'/browse') {
 
   /** For display in details pages */
   @readonly entity Books as projection on my.Books { *,
+    CASE WHEN title IS NULL 
+         THEN ID 
+         ELSE title || ' (' || COALESCE(ID, '') || ')' 
+         END as titleWithID : String,
     author.name as author
   } excluding { createdBy, modifiedBy };
 
