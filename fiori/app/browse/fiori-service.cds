@@ -50,8 +50,17 @@ annotate CatalogService.Books with @(UI : {
             Value : author,
             Label : '{i18n>Author}'
         },
-        {Value : genre.name},
-        {Value : price},
-        {Value : currency.symbol},
-    ]
+        {
+            $Type                : 'UI.DataFieldForAnnotation',
+            Label                : 'Progress Bar',
+            Target               : '@UI.DataPoint#ProgressBar',
+            ![@HTML5.CssDefaults]: {width: '12rem'},
+        }
+    ],
+    DataPoint #ProgressBar : {
+      Value                    : progress,
+      TargetValue              : 100,
+      Title                    : 'Progress',
+      Visualization            : #Progress
+    },
 }, );

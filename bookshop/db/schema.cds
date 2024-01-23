@@ -11,6 +11,7 @@ entity Books : managed {
   price    : Decimal;
   currency : Currency;
   image    : LargeBinary @Core.MediaType: 'image/png';
+  progress : Integer default 42 @Measures.Unit: '%';
 }
 
 entity Authors : managed {
