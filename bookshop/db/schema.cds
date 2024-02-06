@@ -11,6 +11,9 @@ entity Books : managed {
   price    : Decimal;
   currency : Currency;
   image    : LargeBinary @Core.MediaType: 'image/png';
+  
+  @Common.Label: 'Long Description'
+  longDesc : LargeString;
 }
 
 entity Authors : managed {
