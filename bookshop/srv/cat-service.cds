@@ -14,16 +14,26 @@ service CatalogService @(path: '/browse') {
   @readonly
   entity Books       as
     projection on my.Books {
-      *,
-      author.name   as author,
-
-      @Common.Label: 'Location'
-      location.name as location
-    }
-    excluding {
-      createdBy,
-      modifiedBy
+      ID,
+      title,
+      price,
+      currency,
+      genre    : redirected to Genres,
+      author.name as author,
+      location : redirected to Locations
     };
+
+  entity Genres      as
+    projection on my.Genres {
+      ID,
+      name
+    }
+
+  entity Locations   as
+    projection on my.Locations {
+      ID,
+      name
+    }
 
   @requires: 'authenticated-user'
   action submitOrder(book : Books:ID, quantity : Integer) returns {

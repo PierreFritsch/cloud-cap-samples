@@ -40,7 +40,8 @@ annotate CatalogService.Books with @(UI: {
         $Type         : 'UI.PresentationVariantType',
         Text          : 'Default',
         Visualizations: ['@UI.LineItem'],
-        GroupBy       : [location],
+        SortOrder     : [{Property: location.ID}],
+        GroupBy       : [location.name],
     },
     SelectionFields    : [
         ID,
@@ -52,7 +53,12 @@ annotate CatalogService.Books with @(UI: {
             Value: ID,
             Label: '{i18n>Title}'
         },
-        {Value: location},
+        {
+            Value        : location_ID,
+            ![@UI.Hidden]: true
+        },
+        {Value: location.name},
+        {Value: location.ID},
         {
             Value: author,
             Label: '{i18n>Author}'

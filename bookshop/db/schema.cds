@@ -20,7 +20,10 @@ entity Books : managed {
 }
 
 entity Locations : managed {
+      @Common.Label: 'Location ID'
   key ID   : Integer;
+
+      @Common.Label: 'Location'
       name : String(111) @mandatory;
 }
 
