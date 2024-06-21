@@ -41,10 +41,7 @@ annotate CatalogService.Books with @(UI: {
         Text          : 'Default',
         Visualizations: ['@UI.LineItem'],
         SortOrder     : [{Property: location.ID}],
-        GroupBy       : [
-            location.ID,
-            location.name
-        ],
+        GroupBy       : [location.name],
     },
     SelectionFields    : [
         ID,
