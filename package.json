@@ -4,9 +4,6 @@
   "description": "A monorepo with several samples for CAP.",
   "repository": "https://github.com/sap-samples/cloud-cap-samples.git",
   "author": "daniel.hutzel@sap.com",
-  "dependencies": {
-    "@sap/cds": ">=8"
-  },
   "workspaces": [
     "./bookshop",
     "./bookstore",
@@ -22,6 +19,8 @@
   "devDependencies": {
     "@cap-js/cds-types": "^0",
     "@cap-js/sqlite": "^1",
+    "@sap/cds": "^8.7.2",
+    "@sap/cds-dk": "^8.7.2",
     "axios": "^1",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
