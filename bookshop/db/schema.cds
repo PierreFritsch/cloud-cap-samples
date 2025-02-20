@@ -11,7 +11,10 @@ entity Books : managed {
       title    : localized String(111)  @mandatory;
       descr    : localized String(1111);
       author   : Association to Authors @mandatory;
+
+      @cds.api.ignore
       genre    : Association to Genres;
+
       stock    : Integer;
       price    : Decimal;
       currency : Currency;

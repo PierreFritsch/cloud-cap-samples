@@ -124,8 +124,6 @@
                   "descr desc",
                   "author",
                   "author desc",
-                  "genre_ID",
-                  "genre_ID desc",
                   "stock",
                   "stock desc",
                   "price",
@@ -155,7 +153,6 @@
                   "title",
                   "descr",
                   "author",
-                  "genre_ID",
                   "stock",
                   "price",
                   "currency_code",
@@ -250,7 +247,6 @@
                   "title",
                   "descr",
                   "author",
-                  "genre_ID",
                   "stock",
                   "price",
                   "currency_code",
@@ -2130,8 +2126,6 @@
                   "title desc",
                   "author",
                   "author desc",
-                  "genre_ID",
-                  "genre_ID desc",
                   "stock",
                   "stock desc",
                   "price",
@@ -2160,7 +2154,6 @@
                   "ID",
                   "title",
                   "author",
-                  "genre_ID",
                   "stock",
                   "price",
                   "currency_code",
@@ -2254,7 +2247,6 @@
                   "ID",
                   "title",
                   "author",
-                  "genre_ID",
                   "stock",
                   "price",
                   "currency_code",
@@ -2752,11 +2744,6 @@
             ],
             "nullable": true
           },
-          "genre_ID": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "stock": {
             "type": "integer",
             "format": "int32",
@@ -3055,11 +3042,6 @@
                 "$ref": "#/components/schemas/CatalogService.Genres"
               }
             ],
-            "nullable": true
-          },
-          "genre_ID": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           },
           "stock": {
