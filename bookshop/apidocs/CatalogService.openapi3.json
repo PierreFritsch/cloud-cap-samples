@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service for namespace CatalogService",
-    "description": "This service is located at [/browse/](/browse/)",
+    "title": "Use @title: '...' on your CDS service to provide a meaningful title.",
+    "description": "Use @Core.LongDescription: '...' on your CDS service to provide a meaningful description.",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
   "x-odata-version": "4.01",
-  "x-sap-shortText": "Service for namespace CatalogService",
+  "x-sap-shortText": "Use @Core.Description: '...' on your CDS service to provide a meaningful short text.",
   "servers": [
     {
       "url": "/browse"
@@ -745,6 +745,38 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single books_text.",
+        "tags": [
+          "Books_texts"
+        ],
+        "requestBody": {
+          "description": "New books_text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Books_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created books_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Books_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Books_texts(locale='{locale}',ID={ID})": {
@@ -806,6 +838,45 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single books_text.",
+        "tags": [
+          "Books_texts"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Books_texts-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single books_text.",
+        "tags": [
+          "Books_texts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -931,6 +1002,38 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single currency.",
+        "tags": [
+          "Currencies"
+        ],
+        "requestBody": {
+          "description": "New currency",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Currencies-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created currency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Currencies"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Currencies('{code}')": {
@@ -1001,6 +1104,45 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single currency.",
+        "tags": [
+          "Currencies"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Currencies-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single currency.",
+        "tags": [
+          "Currencies"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -1175,6 +1317,39 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single text of a currency.",
+        "tags": [
+          "Currencies",
+          "Currencies_texts"
+        ],
+        "requestBody": {
+          "description": "New text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Currencies_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Currencies_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Currencies_texts": {
@@ -1274,6 +1449,38 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single currencies_text.",
+        "tags": [
+          "Currencies_texts"
+        ],
+        "requestBody": {
+          "description": "New currencies_text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Currencies_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created currencies_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Currencies_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Currencies_texts(locale='{locale}',code='{code}')": {
@@ -1335,6 +1542,45 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single currencies_text.",
+        "tags": [
+          "Currencies_texts"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Currencies_texts-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single currencies_text.",
+        "tags": [
+          "Currencies_texts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -1459,6 +1705,38 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single genre.",
+        "tags": [
+          "Genres"
+        ],
+        "requestBody": {
+          "description": "New genre",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Genres-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created genre",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Genres"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Genres({ID})": {
@@ -1530,6 +1808,45 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single genre.",
+        "tags": [
+          "Genres"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Genres-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single genre.",
+        "tags": [
+          "Genres"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -1658,6 +1975,38 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single child of a genre.",
+        "tags": [
+          "Genres"
+        ],
+        "requestBody": {
+          "description": "New child",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Genres-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created child",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Genres"
                 }
               }
             }
@@ -1911,6 +2260,39 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single text of a genre.",
+        "tags": [
+          "Genres",
+          "Genres_texts"
+        ],
+        "requestBody": {
+          "description": "New text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Genres_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Genres_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Genres_texts": {
@@ -2010,6 +2392,38 @@
             "$ref": "#/components/responses/error"
           }
         }
+      },
+      "post": {
+        "summary": "Creates a single genres_text.",
+        "tags": [
+          "Genres_texts"
+        ],
+        "requestBody": {
+          "description": "New genres_text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Genres_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created genres_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Genres_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
       }
     },
     "/Genres_texts(locale='{locale}',ID={ID})": {
@@ -2071,6 +2485,45 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single genres_text.",
+        "tags": [
+          "Genres_texts"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Genres_texts-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single genres_text.",
+        "tags": [
+          "Genres_texts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -2848,9 +3301,24 @@
         },
         "required": [
           "locale",
-          "ID",
-          "title"
+          "ID"
         ]
+      },
+      "CatalogService.Books_texts-update": {
+        "title": "Books_texts (for update)",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 111,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1111,
+            "nullable": true
+          }
+        }
       },
       "CatalogService.Currencies": {
         "title": "Currencies",
@@ -2899,6 +3367,77 @@
           }
         }
       },
+      "CatalogService.Currencies-create": {
+        "title": "Currencies (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 5,
+            "nullable": true
+          },
+          "minorUnit": {
+            "type": "integer",
+            "format": "int16",
+            "nullable": true
+          },
+          "texts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Currencies_texts-create"
+            }
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "CatalogService.Currencies-update": {
+        "title": "Currencies (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 5,
+            "nullable": true
+          },
+          "minorUnit": {
+            "type": "integer",
+            "format": "int16",
+            "nullable": true
+          },
+          "texts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Currencies_texts-create"
+            }
+          }
+        }
+      },
       "CatalogService.Currencies_texts": {
         "title": "Currencies_texts",
         "type": "object",
@@ -2920,6 +3459,50 @@
           "code": {
             "type": "string",
             "maxLength": 3
+          }
+        }
+      },
+      "CatalogService.Currencies_texts-create": {
+        "title": "Currencies_texts (for create)",
+        "type": "object",
+        "properties": {
+          "locale": {
+            "type": "string",
+            "maxLength": 14
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        "required": [
+          "locale",
+          "code"
+        ]
+      },
+      "CatalogService.Currencies_texts-update": {
+        "title": "Currencies_texts (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
           }
         }
       },
@@ -2982,6 +3565,79 @@
           }
         }
       },
+      "CatalogService.Genres-create": {
+        "title": "Genres (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parent_ID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Genres-create"
+            }
+          },
+          "texts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Genres_texts-create"
+            }
+          }
+        },
+        "required": [
+          "ID"
+        ]
+      },
+      "CatalogService.Genres-update": {
+        "title": "Genres (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "parent_ID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Genres-create"
+            }
+          },
+          "texts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Genres_texts-create"
+            }
+          }
+        }
+      },
       "CatalogService.Genres_texts": {
         "title": "Genres_texts",
         "type": "object",
@@ -3003,6 +3659,50 @@
           "ID": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "CatalogService.Genres_texts-create": {
+        "title": "Genres_texts (for create)",
+        "type": "object",
+        "properties": {
+          "locale": {
+            "type": "string",
+            "maxLength": 14
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "locale",
+          "ID"
+        ]
+      },
+      "CatalogService.Genres_texts-update": {
+        "title": "Genres_texts (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
           }
         }
       },
