@@ -14,12 +14,18 @@ service CatalogService @(path: '/browse') {
   @readonly
   entity Books       as
     projection on my.Books {
-      *,
-      author.name as author
-    }
-    excluding {
-      createdBy,
-      modifiedBy
+          createdAt,
+          modifiedAt,
+      key ID,
+          displayId,
+          title,
+          descr,
+          genre,
+          stock,
+          price,
+          currency,
+          image,
+          author.name as author
     };
 
   @requires: 'authenticated-user'
