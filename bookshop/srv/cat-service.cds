@@ -16,8 +16,8 @@ service CatalogService @(path: '/browse') {
     projection on my.Books {
           createdAt,
           modifiedAt,
-      key ID,
-          displayId,
+          ID,
+      key displayId,
           title,
           descr,
           genre,
