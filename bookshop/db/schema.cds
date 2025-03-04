@@ -6,16 +6,18 @@ using {
 
 namespace sap.capire.bookshop;
 
+@assert.unique: {displayId: [displayId]}
 entity Books : managed {
-  key ID       : Integer;
-      title    : localized String(111)  @mandatory;
-      descr    : localized String(1111);
-      author   : Association to Authors @mandatory;
-      genre    : Association to Genres;
-      stock    : Integer;
-      price    : Decimal;
-      currency : Currency;
-      image    : LargeBinary            @Core.MediaType: 'image/png';
+  key ID        : Integer;
+      displayId : String(20)             @mandatory;
+      title     : localized String(111)  @mandatory;
+      descr     : localized String(1111);
+      author    : Association to Authors @mandatory;
+      genre     : Association to Genres;
+      stock     : Integer;
+      price     : Decimal;
+      currency  : Currency;
+      image     : LargeBinary            @Core.MediaType: 'image/png';
 }
 
 entity Authors : managed {
