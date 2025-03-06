@@ -6,6 +6,25 @@ using {
 
 namespace sap.capire.bookshop;
 
+entity Libraries : managed {
+  key ID        : Integer;
+      displayId : String(20)  @mandatory;
+      name      : String(111) @mandatory;
+      books     : Association to many LibraryBooks
+                    on books.library = $self;
+}
+
+@assert.unique: {libraryBook: [
+  library,
+  book
+]}
+entity LibraryBooks : managed {
+  key ID      : Integer;
+      library : Association to Libraries;
+      book    : Association to Books;
+      stock   : Integer;
+}
+
 @assert.unique: {displayId: [displayId]}
 entity Books : managed {
   key ID        : Integer;

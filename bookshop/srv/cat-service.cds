@@ -4,14 +4,24 @@ service CatalogService @(path: '/browse') {
 
   /** For displaying lists of Books */
   @readonly
-  entity ListOfBooks as
+  entity ListOfBooks        as
     projection on Books
     excluding {
       descr
     };
 
+  entity AllBooksEverywhere as
+    projection on my.LibraryBooks {
+      key library.displayId as library,
+          library.name      as libraryName,
+      key book.displayId    as displayId,
+          book.title        as title,
+          book.author.name  as author,
+          stock
+    }
+
   /** For display in details pages */
-  entity Books       as
+  entity Books              as
     projection on my.Books {
           createdAt,
           modifiedAt,
@@ -20,7 +30,6 @@ service CatalogService @(path: '/browse') {
           title,
           descr,
           genre,
-          stock,
           price,
           currency,
           image,
