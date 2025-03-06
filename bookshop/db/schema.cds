@@ -6,6 +6,7 @@ using {
 
 namespace sap.capire.bookshop;
 
+@assert.unique: {displayId: [displayId]}
 entity Libraries : managed {
   key ID        : Integer;
       displayId : String(20)  @mandatory;
