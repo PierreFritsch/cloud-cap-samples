@@ -5,7 +5,6 @@
   "repository": "https://github.com/sap-samples/cloud-cap-samples.git",
   "author": "daniel.hutzel@sap.com",
   "dependencies": {
-    "@cap-js/change-tracking": "^1.0.7",
     "@sap/cds": ">=8"
   },
   "workspaces": [
