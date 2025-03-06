@@ -22,7 +22,7 @@
   ],
   "devDependencies": {
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "7.9.5",
+    "@sap/cds-dk": "7.9.9",
     "axios": "^1",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
