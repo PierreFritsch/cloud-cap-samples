@@ -31,6 +31,14 @@ class CatalogService extends cds.ApplicationService {
       await this.emit("OrderedBook", { book, quantity, buyer: req.user.id });
     });
 
+    this.on("reqHttpResStatus", (req) => {
+      req.http.res.status(202);
+    });
+
+    this.on("cdsContextHttpResStatus", () => {
+      cds.context.http.res.status(202);
+    });
+
     // Delegate requests to the underlying generic service
     return super.init();
   }

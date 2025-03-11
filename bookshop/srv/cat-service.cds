@@ -20,6 +20,10 @@ service CatalogService @(path: '/browse') {
     excluding {
       createdBy,
       modifiedBy
+    }
+    actions {
+      action reqHttpResStatus();
+      action cdsContextHttpResStatus();
     };
 
   @requires: 'authenticated-user'
