@@ -5,7 +5,7 @@
     "@capire/bookstore": "*",
     "@sap/cds": ">=5",
     "@cap-js-community/odata-v2-adapter": "^1",
-    "express": "^4.17.1"
+    "express": "^5.1.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1"
