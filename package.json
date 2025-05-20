@@ -42,6 +42,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "private": true,
   "dependencies": {
+    "@sap/cds": "^8.9.4",
     "@sap/cds-dk": "^8.9.4"
   }
 }
