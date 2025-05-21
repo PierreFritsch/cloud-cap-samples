@@ -25,6 +25,7 @@ class CatalogService extends cds.ApplicationService {
 
       // Set the "Location" header
       req.res.setHeader("Location", `/Books/${id}`);
+      req.res.status(202);
 
       return book;
     });
