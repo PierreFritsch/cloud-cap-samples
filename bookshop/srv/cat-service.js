@@ -24,7 +24,7 @@ class CatalogService extends cds.ApplicationService {
       await UPDATE(Books, id).with({ stock: (book.stock -= quantity) });
 
       // Set the "Location" header
-      req.http.res.set("Location", `/Books/${id}`);
+      req.res.setHeader("Location", `/Books/${id}`);
 
       return book;
     });
