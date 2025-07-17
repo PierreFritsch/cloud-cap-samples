@@ -23,6 +23,7 @@ entity Books : managed {
 
 @Capabilities.ExpandRestrictions.MaxLevels: 1
 entity Pages {
+  @cds.api.ignore
   key parent  : Association to Books;
   key number  : Integer;
       content : String(1111);
