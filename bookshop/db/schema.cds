@@ -24,7 +24,13 @@ entity Books : managed {
 entity Pages {
   key parent  : Association to Books;
   key number  : Integer;
+      font    : Association to Fonts;
       content : String(1111);
+}
+
+entity Fonts {
+  key ID   : Integer;
+      name : String(111) @mandatory;
 }
 
 entity Authors : managed {
