@@ -13,8 +13,7 @@ service OrdersService {
       OrderNo,
       Items,
       buyer,
-      currency,
-      changes
+      currency
     }
 
   @odata.draft.bypass
