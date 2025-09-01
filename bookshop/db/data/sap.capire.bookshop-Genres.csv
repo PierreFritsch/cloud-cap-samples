@@ -41,3 +41,6 @@ ID,parent_ID,name
 22aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,21aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Autobiography
 23aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,20aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Essay
 24aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,20aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Speech
+25aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,20aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Self-Help
+26aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,20aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,History
+27aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,20aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Philosophy
