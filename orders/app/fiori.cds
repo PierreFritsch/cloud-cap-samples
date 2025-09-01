@@ -74,6 +74,12 @@ annotate OrdersService.Orders with @(UI: {
             $Type : 'UI.ReferenceFacet',
             Label : '{i18n>OrderItems}',
             Target: 'Items/@UI.LineItem'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Change History',
+            ID    : 'ChangeHistoryFacet',
+            Target: 'changes/@UI.PresentationVariant'
         }
     ],
     FieldGroup #Details : {Data: [{
