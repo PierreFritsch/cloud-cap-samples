@@ -7,7 +7,7 @@
     "srv"
   ],
   "dependencies": {
-    "@sap/cds": ">=5.9",
+    "@sap/cds": "^8.9.6",
     "express": "^4.17.1"
   },
   "scripts": {
