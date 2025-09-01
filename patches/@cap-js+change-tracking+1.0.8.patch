@@ -1,0 +1,159 @@
+diff --git a/node_modules/@cap-js/change-tracking/lib/change-log.js b/node_modules/@cap-js/change-tracking/lib/change-log.js
+index 9c818d1..d1120ad 100644
+--- a/node_modules/@cap-js/change-tracking/lib/change-log.js
++++ b/node_modules/@cap-js/change-tracking/lib/change-log.js
+@@ -16,7 +16,7 @@ const {
+ } = require("./entity-helper")
+ const { localizeLogFields } = require("./localization")
+ const isRoot = "change-tracking-isRootEntity"
+-
++const hasParent = "change-tracking-parentEntity"
+
+ function formatDecimal(str, scale) {
+   if (typeof str === "number" && !isNaN(str)) {
+@@ -186,12 +186,12 @@ const _getChildChangeObjId = async function (
+ const _formatCompositionContext = async function (changes, reqData) {
+   const childNodeChanges = []
+
+-  for (const change of changes) {
++  await Promise.all(changes.map(async (change) => {
+     if (typeof change.valueChangedTo === "object" && change.valueChangedTo instanceof Date !== true) {
+       if (!Array.isArray(change.valueChangedTo)) {
+         change.valueChangedTo = [change.valueChangedTo]
+       }
+-      for (const childNodeChange of change.valueChangedTo) {
++      await Promise.all(change.valueChangedTo.map(async (childNodeChange) => {
+         const curChange = Object.assign({}, change)
+         const path = childNodeChange._path.split('/')
+         const curNodePathVal = path.pop()
+@@ -203,10 +203,10 @@ const _formatCompositionContext = async function (changes, reqData) {
+           reqData
+         )
+         _formatCompositionValue(curChange, objId, childNodeChange, childNodeChanges)
+-      }
++      }))
+       change.valueChangedTo = undefined
+     }
+-  }
++  }))
+   changes.push(...childNodeChanges)
+ }
+
+@@ -269,7 +269,7 @@ const _getObjectIdByPath = async function (
+
+ const _formatObjectID = async function (changes, reqData) {
+   const objectIdCache = new Map()
+-  for (const change of changes) {
++  await Promise.all(changes.map(async (change) => {
+     const path = change.serviceEntityPath.split('/')
+     const curNodePathVal = path.pop()
+     const parentNodePathVal = path.pop()
+@@ -297,7 +297,7 @@ const _formatObjectID = async function (changes, reqData) {
+     change.entityID = curNodeObjId
+     change.parentEntityID = parentNodeObjId
+     change.parentKey = getUUIDFromPathVal(parentNodePathVal)
+-  }
++  }))
+ }
+
+ const _isCompositionContextPath = function (aPath, hasComp) {
+@@ -311,6 +311,7 @@ const _isCompositionContextPath = function (aPath, hasComp) {
+ }
+
+ const _formatChangeLog = async function (changes, req) {
++  cds.context.dataloaders = {}
+   await _formatObjectID(changes, req.data)
+   await _formatAssociationContext(changes, req.data)
+   await _formatCompositionContext(changes, req.data)
+@@ -439,12 +440,12 @@ async function generatePathAndParams (req, entityKey) {
+     hasComp: true
+   };
+
+-  if (hasParentAndForeignKey && parentEntity[isRoot]) {
++  if (hasParentAndForeignKey && isRootEntity(parentEntity)) {
+     return compContext;
+   }
+
+   let parentAssoc = await processEntity(targetEntity, targetKey, compContext);
+-  while (parentAssoc && !parentAssoc.entity[isRoot]) {
++  while (parentAssoc && !isRootEntity(parentAssoc.entity)) {
+     parentAssoc = await processEntity(
+       parentAssoc.entity,
+       parentAssoc.ID,
+@@ -476,7 +477,8 @@ async function processEntity (entity, entityKey, compContext) {
+
+ function getAssociationDetails (entity) {
+   if (!entity) return {};
+-  const assocName = entity['change-tracking-parentEntity']?.associationName;
++  const definition = cds.model.definitions[entity.name];
++  const assocName = entity[hasParent]?.associationName || definition?.[hasParent]?.associationName;
+   const assoc = entity.elements[assocName];
+   const parentEntity = assoc?._target;
+   const foreignKey = assoc?.keys?.[0]?.$generatedFieldName;
+@@ -488,6 +490,10 @@ function isEmpty(value) {
+   return value === null || value === undefined || value === "";
+ }
+
++function isRootEntity (entity) {
++  return entity[isRoot] || (cds.model.definitions[entity.name]?.[isRoot] || false);
++}
++
+ async function track_changes (req) {
+   const config = cds.env.requires["change-tracking"];
+
+@@ -505,8 +511,9 @@ async function track_changes (req) {
+   let target = req.target
+   let compContext = null;
+   let entityKey = diff.ID
++  let isTopLevel = isRootEntity(target);
+   const params = convertSubjectToParams(req.subject);
+-  if (req.subject.ref.length === 1 && params.length === 1 && !target[isRoot]) {
++  if (req.subject.ref.length === 1 && params.length === 1 && !isTopLevel) {
+     compContext = await generatePathAndParams(req, entityKey);
+   }
+   let isComposition = _isCompositionContextPath(
+@@ -515,7 +522,7 @@ async function track_changes (req) {
+   );
+   if (
+     req.event === "DELETE" &&
+-    target[isRoot] &&
++    isTopLevel &&
+     !cds.env.requires["change-tracking"]?.preserveDeletes
+   ) {
+     return await DELETE.from(`sap.changelog.ChangeLog`).where({ entityKey });
+diff --git a/node_modules/@cap-js/change-tracking/lib/entity-helper.js b/node_modules/@cap-js/change-tracking/lib/entity-helper.js
+index be564ce..a0a52de 100644
+--- a/node_modules/@cap-js/change-tracking/lib/entity-helper.js
++++ b/node_modules/@cap-js/change-tracking/lib/entity-helper.js
+@@ -1,6 +1,6 @@
+ const cds = require("@sap/cds")
+ const LOG = cds.log("change-log")
+-
++const DataLoader = require("dataloader");
+
+ const getNameFromPathVal = function (pathVal) {
+   return /^(.+?)\(/.exec(pathVal)?.[1] || ""
+@@ -30,10 +30,21 @@ const getObjIdElementNamesInArray = function (elements) {
+ }
+
+ const getCurObjFromDbQuery = async function (entityName, queryVal, /**optional*/ queryKey='ID') {
++  if (!(entityName in cds.context.dataloaders)) {
++    cds.context.dataloaders[entityName] = new DataLoader(async (keys) => {
++      // REVISIT: This always reads all elements -> should read required ones only!
++      const results = await SELECT.from(entityName).where(queryKey, 'in', keys)
++      const resultsByKey = results.reduce((acc, instance) => {
++        const key = instance[queryKey]
++        acc[key] = instance
++        return acc
++      }, {})
++      return keys.map(key => resultsByKey[key] || {})
++    })
++  }
+   if (!queryVal) return {}
+   // REVISIT: This always reads all elements -> should read required ones only!
+-  const obj = await SELECT.one.from(entityName).where({[queryKey]: queryVal})
+-  return obj || {}
++  return cds.context.dataloaders[entityName].load(queryVal) || {}
+ }
+
+ const getCurObjFromReqData = function (reqData, nodePathVal, pathVal) {
