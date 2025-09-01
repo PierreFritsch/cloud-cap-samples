@@ -12,8 +12,13 @@ entity Orders : cuid, managed {
   Items    : Composition of many {
                key ID       : UUID;
                    product  : Association to Products;
+
+                   @changelog
                    quantity : Integer;
+
                    title    : String; //> intentionally replicated as snapshot from product.title
+
+                   @changelog
                    price    : Double; //> materialized calculated field
              };
   buyer    : User;
