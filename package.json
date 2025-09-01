@@ -8,7 +8,8 @@
     "*"
   ],
   "devDependencies": {
-    "@cap-js/cds-test": "^0"
+    "@cap-js/cds-test": "^0",
+    "@sap/cds-dk": "^9.2.1"
   },
   "scripts": {
     "start": "cds watch bookshop --open http://localhost:4004",
@@ -31,5 +32,9 @@
     "timeout": 6666
   },
   "license": "SEE LICENSE IN LICENSE",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@cap-js/change-tracking": "^1.0.8",
+    "@sap/cds": "^9.2.1"
+  }
 }

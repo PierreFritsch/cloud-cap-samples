@@ -1,21 +1,35 @@
-using { Currency, User, managed, cuid } from '@sap/cds/common';
+using {
+  Currency,
+  User,
+  managed,
+  cuid
+} from '@sap/cds/common';
+using {sap.changelog.ChangeView} from '@cap-js/change-tracking';
+
 namespace sap.capire.orders;
 
+@changelog: [OrderNo]
 entity Orders : cuid, managed {
-  OrderNo  : String(44) @title:'Order Number'; //> readable key
+  OrderNo  : String(44) @title: 'Order Number'; //> readable key
+
   Items    : Composition of many {
-    key ID    : UUID;
-    product   : Association to Products;
-    quantity  : Integer;
-    title     : String; //> intentionally replicated as snapshot from product.title
-    price     : Double; //> materialized calculated field
-  };
+               key ID       : UUID;
+                   product  : Association to Products;
+
+                   @changelog
+                   quantity : Integer;
+
+                   title    : String; //> intentionally replicated as snapshot from product.title
+
+                   @changelog
+                   price    : Double; //> materialized calculated field
+             };
   buyer    : User;
   currency : Currency;
 }
 
 /** This is a stand-in for arbitrary ordered Products */
-entity Products @(cds.persistence.skip:'always') {
+entity Products @(cds.persistence.skip: 'always') {
   key ID : String;
 }
 
