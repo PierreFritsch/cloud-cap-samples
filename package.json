@@ -34,6 +34,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "private": true,
   "dependencies": {
+    "@cap-js/change-tracking": "^1.0.8",
     "@sap/cds": "^9.2.1"
   }
 }
