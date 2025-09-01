@@ -18,7 +18,7 @@ entity Orders : cuid, managed {
 }
 
 entity OrderItems : cuid {
-  parent   : Association to Orders;
+  parent   : Association to one Orders;
   product  : Association to Products;
 
   @changelog
@@ -27,7 +27,7 @@ entity OrderItems : cuid {
   title    : String; //> intentionally replicated as snapshot from product.title
 
   @changelog
-  price    : Double; //> materialized calculated field
+  price    : Decimal; //> materialized calculated field
 }
 
 /** This is a stand-in for arbitrary ordered Products */
