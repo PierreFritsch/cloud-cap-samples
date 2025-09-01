@@ -4,11 +4,13 @@ using {
   managed,
   cuid
 } from '@sap/cds/common';
+using {sap.changelog.ChangeView} from '@cap-js/change-tracking';
 
 namespace sap.capire.orders;
 
 entity Orders : cuid, managed {
   OrderNo  : String(44) @title: 'Order Number'; //> readable key
+
   Items    : Composition of many {
                key ID       : UUID;
                    product  : Association to Products;
@@ -23,6 +25,10 @@ entity Orders : cuid, managed {
              };
   buyer    : User;
   currency : Currency;
+
+  changes  : Association to many ChangeView
+               on changes.entityKey = ID;
+
 }
 
 /** This is a stand-in for arbitrary ordered Products */

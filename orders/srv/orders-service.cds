@@ -1,15 +1,29 @@
-using { sap.capire.orders as my } from '../db/schema';
+using {sap.capire.orders as my} from '../db/schema';
 
 service OrdersService {
-  entity Orders as projection on my.Orders;
+  entity Orders        as
+    projection on my.Orders {
+      ID,
+
+      createdAt,
+      createdBy,
+      modifiedAt,
+      modifiedBy,
+
+      OrderNo,
+      Items,
+      buyer,
+      currency,
+      changes
+    }
 
   @odata.draft.bypass
   @(requires: 'system-user')
   entity OrdersNoDraft as projection on my.Orders;
 
   event OrderChanged {
-    product: String;
-    deltaQuantity: Integer;
+    product       : String;
+    deltaQuantity : Integer;
   }
 
 }
