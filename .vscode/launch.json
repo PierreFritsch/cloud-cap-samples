@@ -9,26 +9,21 @@
       "command": "npx cds watch bookshop",
       "type": "node-terminal",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**",
-        "**/cds/lib/lazy.js",
-        "**/cds/lib/req/cds-context.js",
-        "**/odata-v4/okra/**"
-      ]
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**", "**/cds/lib/lazy.js", "**/cds/lib/req/cds-context.js", "**/odata-v4/okra/**"]
     },
     {
       "name": "bookstore",
       "command": "npx cds watch bookstore",
       "type": "node-terminal",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**",
-        "**/cds/lib/lazy.js",
-        "**/cds/lib/req/cds-context.js",
-        "**/odata-v4/okra/**"
-      ]
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**", "**/cds/lib/lazy.js", "**/cds/lib/req/cds-context.js", "**/odata-v4/okra/**"]
+    },
+    {
+      "name": "orders",
+      "command": "npx cds watch orders",
+      "type": "node-terminal",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**", "**/cds/lib/lazy.js", "**/cds/lib/req/cds-context.js", "**/odata-v4/okra/**"]
     }
   ]
 }
