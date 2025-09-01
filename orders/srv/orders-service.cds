@@ -1,6 +1,8 @@
 using {sap.capire.orders as my} from '../db/schema';
 
 service OrdersService {
+
+  @cds.redirection.target
   entity Orders        as
     projection on my.Orders {
       ID,
@@ -11,9 +13,14 @@ service OrdersService {
       modifiedBy,
 
       OrderNo,
-      Items,
+      Items : redirected to OrderItems,
       buyer,
       currency
+    }
+
+  entity OrderItems    as
+    projection on my.OrderItems {
+      *
     }
 
   @odata.draft.bypass

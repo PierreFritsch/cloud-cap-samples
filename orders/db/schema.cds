@@ -4,7 +4,6 @@ using {
   managed,
   cuid
 } from '@sap/cds/common';
-using {sap.changelog.ChangeView} from '@cap-js/change-tracking';
 
 namespace sap.capire.orders;
 
@@ -12,20 +11,23 @@ namespace sap.capire.orders;
 entity Orders : cuid, managed {
   OrderNo  : String(44) @title: 'Order Number'; //> readable key
 
-  Items    : Composition of many {
-               key ID       : UUID;
-                   product  : Association to Products;
-
-                   @changelog
-                   quantity : Integer;
-
-                   title    : String; //> intentionally replicated as snapshot from product.title
-
-                   @changelog
-                   price    : Double; //> materialized calculated field
-             };
+  Items    : Composition of many OrderItems
+               on Items.parent = $self;
   buyer    : User;
   currency : Currency;
+}
+
+entity OrderItems : cuid {
+  parent   : Association to Orders;
+  product  : Association to Products;
+
+  @changelog
+  quantity : Integer;
+
+  title    : String; //> intentionally replicated as snapshot from product.title
+
+  @changelog
+  price    : Double; //> materialized calculated field
 }
 
 /** This is a stand-in for arbitrary ordered Products */

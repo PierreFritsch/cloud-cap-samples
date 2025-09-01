@@ -101,7 +101,7 @@ annotate OrdersService.Orders with @(UI: {
 };
 
 
-annotate OrdersService.Orders.Items with @(UI: {
+annotate OrdersService.OrderItems with @(UI: {
     LineItem      : [
         {
             Value: product_ID,
@@ -142,6 +142,6 @@ annotate OrdersService.Orders.Items with @(UI: {
 }, ) {
     quantity @(Common.FieldControl: #Mandatory);
     ID       @UI.Hidden;
-    up_      @UI.Hidden;
+    parent   @UI.Hidden;
 
 };
