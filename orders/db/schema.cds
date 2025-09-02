@@ -4,6 +4,7 @@ using {
   managed,
   cuid
 } from '@sap/cds/common';
+using {sap.changelog.ChangeView} from '@cap-js/change-tracking';
 
 namespace sap.capire.orders;
 
