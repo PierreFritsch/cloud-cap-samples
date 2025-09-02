@@ -7,7 +7,6 @@ using {
 
 namespace sap.capire.orders;
 
-@changelog: [OrderNo]
 entity Orders : cuid, managed {
   OrderNo  : String(44) @title: 'Order Number'; //> readable key
 
@@ -25,6 +24,10 @@ entity Orders : cuid, managed {
              };
   buyer    : User;
   currency : Currency;
+
+  changes  : Association to many ChangeView
+               on changes.entityKey = ID;
+
 }
 
 /** This is a stand-in for arbitrary ordered Products */
