@@ -1,0 +1,7 @@
+@server = http://localhost:4004
+@me = Authorization: Basic {{$processEnv USER}}:
+
+### ------------------------------------------------------------------------
+# Browse Books as any user
+GET {{server}}/browse/ListOfBooks?$filter=ID eq 301
+{{me}}
