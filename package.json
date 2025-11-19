@@ -34,6 +34,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^9.4.4"
+    "@sap/cds": "^9.4.4",
+    "@sap/cds-mtxs": "^3.4.4"
   }
 }
