@@ -13,7 +13,7 @@ entity Books : managed {
       author   : Association to Authors @mandatory;
       genre    : Association to Genres;
       stock    : Integer;
-      price    : Price;
+      price    : Decimal(31, 14);
       currency : Currency;
       image    : LargeBinary            @Core.MediaType: 'image/png';
 }
