@@ -32,5 +32,8 @@
     "timeout": 6666
   },
   "license": "SEE LICENSE IN LICENSE",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^9.4.4"
+  }
 }
